@@ -1,0 +1,28 @@
+import Link from "next/link";
+import type { NavPage } from "@/lib/tree";
+
+/** The tree of pages, as editors order it in Mapled. */
+export function Sidebar({ roots }: { roots: NavPage[] }) {
+  return (
+    <nav className="sidebar" aria-label="Documentation">
+      <form action="/search" className="search">
+        <input type="search" name="q" placeholder="Search the docs" aria-label="Search the docs" maxLength={200} />
+      </form>
+      <Tree pages={roots} />
+    </nav>
+  );
+}
+
+function Tree({ pages }: { pages: NavPage[] }) {
+  if (pages.length === 0) return null;
+  return (
+    <ul>
+      {pages.map((page) => (
+        <li key={page.id}>
+          <Link href={`/${page.slug}`}>{page.title}</Link>
+          <Tree pages={page.children} />
+        </li>
+      ))}
+    </ul>
+  );
+}
