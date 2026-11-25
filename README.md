@@ -29,7 +29,7 @@ You need Node.js 20.9 or newer.
    npm run dev
    ```
 
-Open http://localhost:3000. Change a text in Mapled, press **Review & publish**, and reload the page.
+Open http://localhost:3000. Change a text in Mapled, press **Review & publish**, and hard-reload the page (hold Shift and press reload). The site keeps what it read for up to an hour, and a hard reload makes the dev server read again.
 
 ## What's inside
 
@@ -49,9 +49,15 @@ Pages are rendered on the server and cached; rich text is Markdown, rendered wit
 
 ## Deploy
 
-1. Deploy the repository to your host (the button above does it on Vercel) with `MAPLED_KEY` set.
+1. Deploy the repository to your host (the button above does it on Vercel) with `MAPLED_KEY` set. The site is online now, but until the webhook of the next step is set a publish can take up to an hour to show on it.
 2. In Mapled → **Integrations** → **Your site**, save `https://your-site.com/api/mapled/revalidate` as the **Revalidation webhook**. Copy the **Signing secret** it shows once into `MAPLED_WEBHOOK_SECRET` on your host, and redeploy.
 3. Press **Send test ping**: the delivery shows up under **Recent deliveries** as Delivered. From now on every publish refreshes the site at once, and **Preview** in Mapled opens your drafts on it.
+
+## Connect it with an AI agent
+
+Instead of the steps above, an AI coding tool can do them. Open your copy of this repository in Claude Code, Cursor, Codex or another agent that can edit its files. In Mapled, open the project, then project settings (the gear in the project's header) → **Integrations** → **Connect with AI**, copy the prompt and paste it into the agent's chat. The agent runs `npx -y @mapled/cli connect` and you press **Authorize** in the browser. The button shows while no AI client is connected to the project; with one connected already, ask the agent to run that command in the repository.
+
+For a project made from a template Mapled gives the agent a short way: it puts the delivery key in place, deploys the site, saves the revalidation webhook and checks the result. It doesn't propose a setup plan, because the template's collections are already in the project. One step stays yours: the **Signing secret** of the webhook (step 2 of [Deploy](#deploy)), which the agent never sees.
 
 ## Environment variables
 

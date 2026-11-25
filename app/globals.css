@@ -134,6 +134,28 @@ img {
   font: inherit;
 }
 
+/* shown while the field holds words and has the focus: a search starts on Enter */
+.search-hint {
+  display: none;
+  margin: 6px 2px 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.search input:focus:not(:placeholder-shown) + .search-hint {
+  display: block;
+}
+
+.search-hint kbd {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--fg);
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
 main {
   padding: 40px 20px 72px;
   max-width: 780px;

@@ -11,7 +11,7 @@ import "./globals.css";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await mapled.getSingle("docs-settings");
   const title = settings?.data.title ?? "Docs";
-  return { title: { default: title, template: `%s · ${title}` }, description: settings?.data.description ?? undefined };
+  return { title: { default: title, template: `%s | ${title}` }, description: settings?.data.description ?? undefined };
 }
 
 export default async function RootLayout({ children }: { children: ReactNode }) {

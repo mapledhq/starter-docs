@@ -15,16 +15,20 @@ export default async function SearchPage({ searchParams }: Props) {
   return (
     <article>
       <h1>Search</h1>
-      <form action="/search" className="search">
-        <input type="search" name="q" defaultValue={q} placeholder="Search the docs" aria-label="Search the docs" maxLength={200} />
-      </form>
+      {/* the field is the sidebar's (components/search-box.tsx), filled with these words */}
+      {!found ? <p className="muted">Type what you are looking for in “Search the docs” and press Enter.</p> : null}
       {found && found.total === 0 ? <p className="muted">Nothing found for “{q}”.</p> : null}
+      {found && found.total > 0 ? (
+        <p className="muted">
+          {found.total === 1 ? "1 page" : `${found.total} pages`} for “{q}”{found.total > found.records.length ? `, the first ${found.records.length} shown` : ""}
+        </p>
+      ) : null}
       {found ? (
         <ul className="children">
           {found.records.map((page) => (
             <li key={page.id}>
               <Link href={`/${page.data.slug}`}>{page.data.title}</Link>
-              {page.data.summary ? <span className="muted"> · {page.data.summary}</span> : null}
+              {page.data.summary ? <span className="muted"> • {page.data.summary}</span> : null}
             </li>
           ))}
         </ul>

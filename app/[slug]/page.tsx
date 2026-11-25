@@ -49,7 +49,7 @@ export default async function DocPage({ params }: Props) {
           {here.children.map((child) => (
             <li key={child.id}>
               <Link href={`/${child.slug}`}>{child.title}</Link>
-              {child.summary ? <span className="muted"> · {child.summary}</span> : null}
+              {child.summary ? <span className="muted"> • {child.summary}</span> : null}
             </li>
           ))}
         </ul>

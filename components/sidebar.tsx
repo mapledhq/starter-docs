@@ -1,13 +1,12 @@
 import Link from "next/link";
 import type { NavPage } from "@/lib/tree";
+import { SearchBox } from "./search-box";
 
 /** The tree of pages, as editors order it in Mapled. */
 export function Sidebar({ roots }: { roots: NavPage[] }) {
   return (
     <nav className="sidebar" aria-label="Documentation">
-      <form action="/search" className="search">
-        <input type="search" name="q" placeholder="Search the docs" aria-label="Search the docs" maxLength={200} />
-      </form>
+      <SearchBox />
       <Tree pages={roots} />
     </nav>
   );
