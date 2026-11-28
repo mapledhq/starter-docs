@@ -45,7 +45,7 @@ Open http://localhost:3000. Change a text in Mapled, press **Review & publish**,
 - `app/api/mapled/preview` — the **Preview** button in Mapled opens drafts here.
 - `app/api/mapled/release` and `<MapledLive />` in the layout — open tabs follow a publish without a reload.
 
-Pages are rendered on the server and cached; rich text is Markdown, rendered with `react-markdown` (never as raw HTML).
+Pages are rendered on the server and cached; rich text is Markdown with GitHub's tables, task lists and strikethrough, rendered with `react-markdown` and `remark-gfm` (never as raw HTML).
 
 ## Deploy
 
